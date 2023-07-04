@@ -21,6 +21,47 @@ body {
   margin: 2em 0;
 }
 
+#homepage-ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+
+.hp-ul-li-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hp-likes {
+  text-align: right;
+}
+
 #commentPopup {
   border: 0.1em solid red;
+}
+
+#footer {
+  margin: 5em 0;
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    padding: 0 5em;
+  }
+
+  #homepage-ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 0 1em;
+  }
+
+  #homepage-ul {
+    grid-template-columns: 1fr;
+  }
 }
