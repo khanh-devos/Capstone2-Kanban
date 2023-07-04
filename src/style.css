@@ -32,7 +32,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
 
 .hp-likes {
@@ -51,6 +50,7 @@ body {
   body {
     padding: 0 5em;
   }
+
   #homepage-ul {
     grid-template-columns: 1fr 1fr;
   }
@@ -60,6 +60,7 @@ body {
   body {
     padding: 0 1em;
   }
+
   #homepage-ul {
     grid-template-columns: 1fr;
   }

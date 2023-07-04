@@ -1,10 +1,8 @@
-import * as homeAPI from "./homepageAPI.js"
-
+import * as homeAPI from './homepageAPI.js';
 
 export const listItems = async () => {
   const movies = await homeAPI.getMovies();
-  console.log(movies);
-  const listLi = movies.map(item => `
+  const listLi = movies.map((item) => `
     <li class='hp-ul-li'>
       <image class='hp-ul-li-img' src='${item.image.medium}'
         width="100%"
@@ -25,4 +23,4 @@ export const listItems = async () => {
   `);
 
   document.querySelector('#homepage-ul').innerHTML = listLi.join(' ');
-}
+};
