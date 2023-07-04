@@ -24,3 +24,7 @@ body {
 #commentPopup {
   border: 0.1em solid red;
 }
+
+#footer {
+  margin: 5em 0;
+}
