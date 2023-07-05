@@ -21,7 +21,7 @@
         "json": "always"
       }
     ],
-    "no-duplicate-imports": "off",
+    "no-duplicate-imports": "off"
   },
   "ignorePatterns": ["dist/", "docs/", "build/"]
 }
