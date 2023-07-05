@@ -57,7 +57,7 @@ export const commentClose = () => {
     commentElem.style.display = 'none';
   };
   commentClose.addEventListener('click', commentPopupClose);
-}
+};
 
 export const commentSubmit = () => {
   const commentSubmit = document.querySelector('#cm-submit-comment');
