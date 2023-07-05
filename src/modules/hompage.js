@@ -42,14 +42,12 @@ export const moviesCounter = (movies) => {
   if (movies) {
     if (movies.length <= 20) {
       document.querySelector('#episode-counter').innerHTML = `Episode(${movies.length})`;
-    }
-    else return false;
-  } 
-  else {
+    } else return false;
+  } else {
     document.querySelector('#homepage-ul').innerHTML = 'fetching failed !';
   }
 
-  return true
+  return true;
 };
 
 export const listItems = async () => {
@@ -58,7 +56,7 @@ export const listItems = async () => {
   const homepageUl = document.querySelector('#homepage-ul');
 
   if (!check) {
-    homepageUl.innerHTML = "Too many Movies";
+    homepageUl.innerHTML = 'Too many Movies';
     return;
   }
 
