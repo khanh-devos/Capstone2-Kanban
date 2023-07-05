@@ -17,7 +17,7 @@ export const listItems = async () => {
       
       <h5 class='hp-likes' id='${item.id}-likes'>likes</h5>
 
-      <button class='hp-comment-btn'>Comments</button>
+      <button class='hp-comment-btn' id='${item.id}'>Comments</button>
     </li>
   
   `);
