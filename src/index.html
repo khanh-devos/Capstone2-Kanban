@@ -22,12 +22,48 @@
   </section>
 
   <section id="commentPopup">
-    <h3>Add a comment</h3>
-    <form action="#">
-      <input type="text" name="name" placeholder="Your name">
-      <input type="text" name="comment" placeholder="Your insights">
-      <input type="submit" value="Comment">
-    </form>
+    <div class="cm-movie-details">
+      <img src="" alt="" id="cm-movie-img">
+      <h2 id="cm-movie-title">Movie title</h2>
+      <div class="cm-movie-item-wrapper">
+        <p>Movie summary: </p>
+        <p id="cm-movie-details">Movie details</p>
+      </div>
+      <div class="cm-movie-item-wrapper">
+        <p>Movie type: </p>
+        <p id="cm-movie-type">Movie type</p>
+      </div>
+      <div class="cm-movie-item-wrapper">
+        <p>Movie runtime: </p>
+        <p id="cm-movie-runtime">Movie runtime</p>
+      </div>
+      <div class="cm-movie-item-wrapper">
+        <p>Movie rating: </p>
+        <p id="cm-movie-rating">Movie rating</p>
+      </div>
+    </div>
+    <div class="cm-show-comment">
+      <table>
+        <thead>
+          <td>Comment</td>
+          <td>Commented by</td>
+          <td>Commented at</td>
+        </thead>
+        <tbody id="cm-movie-existing-comment">
+        </tbody>
+      </table>
+    </div>
+    <div class="cm-add-comment">
+      <span id="cm-feedback-message-success">Comment added successfully!</span>
+      <span id="cm-feedback-message-fail">Something went wrong! Please try again.</span>
+      <h3>Add a comment</h3>
+      <form action="#">
+        <input type="text" name="name" placeholder="Your name" id="cm-commentor-name">
+        <input type="text" name="comment" placeholder="Your insights" id="cm-commentor-insight">
+        <input type="submit" value="Comment" id="cm-submit-comment">
+      </form>
+    </div>
+    <span class="cm-close-comment-popup">x</span>
   </section>
 
   <footer id="footer">
