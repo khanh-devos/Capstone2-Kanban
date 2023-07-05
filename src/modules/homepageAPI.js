@@ -1,6 +1,5 @@
 const URL = 'https://api.tvmaze.com/seasons/1/episodes';
 export const LIKES_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
-const LENGTH = 6;
 export const APP = 'WJMi62Cw2ldmsCpFe58w';
 
 export const getMovies = async () => {
@@ -9,9 +8,12 @@ export const getMovies = async () => {
   await fetch(URL)
     .then(async (res) => {
       movies = await res.json();
+    })
+    .catch(() => {
+      movies = null;
     });
 
-  return movies.slice(0, LENGTH);
+  return movies;
 };
 
 export const getLikes = async () => {
