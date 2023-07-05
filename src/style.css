@@ -8,16 +8,19 @@
 }
 
 body {
-  background: bisque;
-  padding: 0 12em;
+  background: url(./imgs/undertheDome.jpg) center center no-repeat;
+  background-size: 100% 100%;
+  padding: 2em 12em;
 }
 
-#header {
-  border: 0.1em solid red;
+.header-a {
+  font-size: 1.2em;
+  padding: 0 0.3em;
+  color: aliceblue;
+  text-decoration: none;
 }
 
 #homepage {
-  border: 0.1em solid red;
   margin: 2em 0;
 }
 
@@ -28,14 +31,49 @@ body {
   gap: 1em;
 }
 
+.hp-ul-li {
+  background: rgba(136, 131, 99, 0.8);
+  padding: 1em 1em;
+  border-radius: 1em;
+  outline: auto #f1c27b;
+}
+
 .hp-ul-li-div {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  height: 2em;
+  margin: 0.5em 0.5em;
+}
+
+.heart {
+  color: #490000;
+  cursor: pointer;
+}
+
+.heart:hover {
+  color: #a10000;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
 }
 
 .hp-likes {
   text-align: right;
+  margin: 0;
+}
+
+.hp-comment-btn {
+  margin-top: 2em;
+  width: 50%;
+  height: 2em;
+  border-radius: 1em;
 }
 
 #commentPopup {
@@ -44,11 +82,17 @@ body {
 
 #footer {
   margin: 5em 0;
+  color: aliceblue;
+}
+
+.footer-a {
+  text-decoration: none;
+  color: orange;
 }
 
 @media screen and (max-width: 1000px) {
   body {
-    padding: 0 5em;
+    padding: 2em 5em;
   }
 
   #homepage-ul {
@@ -58,7 +102,7 @@ body {
 
 @media screen and (max-width: 768px) {
   body {
-    padding: 0 1em;
+    padding: 1em 1em;
   }
 
   #homepage-ul {
