@@ -29,7 +29,7 @@
 
 # 📖 [Capstone2-Kaban] <a name="about-project"></a>
 
-**Capstone2-Kaban** is a website for practising using Kanban board during collaboration.
+**Capstone2-Kaban** is a website for showing all the episodes of season 1 'Under the Dome'. While building it, we leveraged a Kanban board inside a Github project to manage the workflow of each members.  I
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -40,6 +40,7 @@
   <ul>
     <li><a href="#">JS</a></li>
     <li><a href="#">HTML</a></li>
+    <li><a href="#">Git & Github</a></li>
   </ul>
 </details>
 
@@ -47,10 +48,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Display Books**
-- **Add books with author and title**
-- **Remove them**
-- **save the data in local storage**
+- **Fetch APIs**
+- **Display Movies**
+- **Allow client likes**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -68,7 +68,7 @@
 
 - Open your Terminal
 - Navigate to the desired directory to which you want to clone the repository to
-- [Copy & Paste] git clone https://github.com/khanh-devos/awesome-books.git
+- clone it to your local machine
 
 ### Prerequisites
 
@@ -81,20 +81,21 @@ In order to run this project you need:
 ### Setup
 
 Clone this repository to your desired folder:
-
-- git clone https://github.com/khanh-devos/awesome-books.git
+- git clone https://github.com/khanh-devos/Capstone2-Kanban.git
 
 ### Install
 
 Install this project with:
 
+- Stay at the folder of Capstones-Kaban
+- npm install (to install all dependencies) 
 - You need to install Chrome if you want to see it working locally
 
 ### Usage
 
 To run the project, execute the following command:
 
-- open index.html with Chrome or other browsers.
+- npm start
 
 ### Run tests
 
@@ -119,6 +120,10 @@ You can deploy any service you want.
 - GitHub: [khanh-devos](https://github.com/khanh-devos)
 - Twitter: [@khanhror](https://twitter.com/home?lang=en)
 - LinkedIn: [Khanh RoR](https://www.linkedin.com/in/khanh-than-trong-3b4344246/)
+
+👤 **Omar Faruk**
+
+- GitHub: [Omar Faruk](https://github.com/aqurds)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
