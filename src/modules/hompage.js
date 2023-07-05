@@ -38,8 +38,30 @@ export const melike = (event) => {
   addLike(updateLike);
 };
 
+export const moviesCounter = (movies) => {
+  if (movies) {
+    if (movies.length <= 20) {
+      document.querySelector('#episode-counter').innerHTML = `Episode(${movies.length})`;
+    }
+    else return false;
+  } 
+  else {
+    document.querySelector('#homepage-ul').innerHTML = 'fetching failed !';
+  }
+
+  return true
+};
+
 export const listItems = async () => {
   const movies = await homeAPI.getMovies();
+  const check = moviesCounter(movies);
+  const homepageUl = document.querySelector('#homepage-ul');
+
+  if (!check) {
+    homepageUl.innerHTML = "Too many Movies";
+    return;
+  }
+
   const listLi = movies.map((item) => `
     <li class='hp-ul-li'>
       <image class='hp-ul-li-img' src='${item.image.medium}'
@@ -60,7 +82,7 @@ export const listItems = async () => {
   
   `);
 
-  document.querySelector('#homepage-ul').innerHTML = listLi.join(' ');
+  homepageUl.innerHTML = listLi.join(' ');
 
   const btns = document.querySelectorAll('.hp-heart-btn');
   Object.values(btns).forEach((item) => {
