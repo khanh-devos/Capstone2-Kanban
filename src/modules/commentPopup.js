@@ -1,6 +1,7 @@
 import { getComments } from './commentPopupAPI.js';
-import { APP } from './homepageAPI.js';
 import { BASE_URL } from './commentPopupAPI.js';
+
+const APP = 'WJMi62Cw2ldmsCpFe58w';
 
 export const commentPopup = async (itemId, data) => {
   const commentElem = document.querySelector('#commentPopup');
