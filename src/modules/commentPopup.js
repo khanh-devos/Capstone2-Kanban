@@ -1,6 +1,6 @@
 import { getComments } from './commentPopupAPI.js';
-import { BASE_URL } from './commentPopupAPI.js';
 
+const BASE_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 const APP = 'WJMi62Cw2ldmsCpFe58w';
 
 export const commentPopup = async (itemId, data) => {
