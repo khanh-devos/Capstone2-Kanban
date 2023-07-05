@@ -22,14 +22,17 @@ export const addLike = async (updateLike) => {
       'content-type': 'application/json; charset=utf-8',
     },
   })
-    .then(() => showLikes());
+    .then(async () => {
+      await showLikes();
+    });
 };
 
 export const melike = (event) => {
-  const isExisting = ALL_LIKES.find((e) => e.item_id === event.target.name);
+  const id = event.target.id.split('-')[0];
+  const isExisting = ALL_LIKES.find((e) => e.item_id === id);
 
   const updateLike = {
-    item_id: event.target.name,
+    item_id: id,
     likes: 0,
   };
 
@@ -38,8 +41,28 @@ export const melike = (event) => {
   addLike(updateLike);
 };
 
-export const listItems = async () => {
+export const moviesCounter = async () => {
   const movies = await homeAPI.getMovies();
+
+  if (movies) {
+    if (movies.length <= 100) {
+      document.querySelector('#episode-counter').innerHTML = `Episode(${movies.length})`;
+      return movies;
+    }
+
+    document.querySelector('#homepage-ul').innerHTML = 'Too many movies !!';
+  } else {
+    document.querySelector('#homepage-ul').innerHTML = 'fetching failed !';
+  }
+
+  return null;
+};
+
+export const listItems = async () => {
+  const movies = await moviesCounter();
+  const homepageUl = document.querySelector('#homepage-ul');
+  if (!movies) return;
+
   const listLi = movies.map((item) => `
     <li class='hp-ul-li'>
       <image class='hp-ul-li-img' src='${item.image.medium}'
@@ -48,9 +71,11 @@ export const listItems = async () => {
 
       <div class='hp-ul-li-div'>
         <h3>${item.name}</h3>
-        <button class='hp-heart-btn' name='${item.id}'>
-        heart
-        </button>
+
+        <span class="material-symbols-outlined heart" 
+        id='${item.id}-heart'>
+          favorite
+        </span>
       </div>
       
       <h5 class='hp-likes' id='${item.id}-likes'>likes</h5>
@@ -60,10 +85,11 @@ export const listItems = async () => {
   
   `);
 
-  document.querySelector('#homepage-ul').innerHTML = listLi.join(' ');
+  homepageUl.innerHTML = listLi.join(' ');
 
-  const btns = document.querySelectorAll('.hp-heart-btn');
-  Object.values(btns).forEach((item) => {
+  const spans = document.querySelectorAll('.heart');
+
+  Object.values(spans).forEach((item) => {
     item.addEventListener('click', melike);
   });
 };
