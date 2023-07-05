@@ -58,7 +58,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://khanh-devos.github.io/awesome-books/)
+- [Live Demo Link](https://khanh-devos.github.io/Capstone2-Kanban/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -142,7 +142,7 @@ You can deploy any service you want.
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/khanh-devos/awesome-books/issues).
+Feel free to check the [issues page](https://github.com/khanh-devos/Capstone2-Kanban/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
