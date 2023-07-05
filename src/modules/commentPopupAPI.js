@@ -1,6 +1,6 @@
-import { APP } from './homepageAPI';
-
 export const BASE_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+
+const APP = 'WJMi62Cw2ldmsCpFe58w';
 
 export const getComments = async (itemId) => {
   let movies = [];
