@@ -1,3 +1,4 @@
+import * as comment from './commentPopup.js';
 import * as homeAPI from './homepageAPI.js';
 
 let ALL_LIKES = [];
@@ -65,16 +66,12 @@ export const listItems = async () => {
 
   const listLi = movies.map((item) => `
     <li class='hp-ul-li'>
-      <image class='hp-ul-li-img' src='${item.image.medium}'
+      <image class='hp-ul-li-img' alt="movie cover" src='${item.image.medium}'
         width="100%"
       />
 
       <div class='hp-ul-li-div'>
         <h3 class='item-title'>${item.name}</h3>
-        <span class='item-details-hidden'> ${item.summary} </span>
-        <span class='item-type-hidden'> ${item.type} </span>
-        <span class='item-rating-hidden'> ${item.rating.average} </span>
-        <span class='item-runtime-hidden'> ${item.runtime} </span>
         <span class="material-symbols-outlined heart" 
         id='${item.id}-heart'>
           favorite
@@ -95,4 +92,6 @@ export const listItems = async () => {
   Object.values(spans).forEach((item) => {
     item.addEventListener('click', melike);
   });
+
+  comment.commentShow(movies);
 };

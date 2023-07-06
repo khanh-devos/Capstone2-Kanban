@@ -1,97 +1,79 @@
-import { getComments } from './commentPopupAPI.js';
+import * as commentAPI from './commentPopupAPI.js';
 
 const BASE_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 const APP = 'WJMi62Cw2ldmsCpFe58w';
 
-export const commentPopup = async (itemId, data) => {
-  const commentElem = document.querySelector('#commentPopup');
-  commentElem.style.display = 'block';
-  document.querySelector('#cm-movie-img').src = data.imgLink;
-  document.querySelector('#cm-movie-title').innerHTML = data.itemName;
-  document.querySelector('#cm-movie-details').innerHTML = data.itemSummary;
-  document.querySelector('#cm-movie-type').innerHTML = data.itemType;
-  document.querySelector('#cm-movie-runtime').innerHTML = data.itemRuntime;
-  document.querySelector('#cm-movie-rating').innerHTML = data.itemRating;
-  document.querySelector('#cm-submit-comment').setAttribute('item-id', itemId);
+export const commentCounter = async (itemId) => {
+  const comments = await commentAPI.getComments(itemId);
+  console.log(comments);
 
-  const comment = await getComments(itemId);
-
-  if (comment && comment.length) {
-    const commentLi = comment.map((item) => `
-      <tr class='cm-li'>
-        <td>${item.comment}</td> 
-        <td>${item.username}</td> 
-        <td>${item.creation_date}</td>
-      </tr>
-    `);
-    document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi.join(' ');
-  } else {
+  if (comments) {
+    if(comments.length <= 20) {
+      return comments
+    }
+    else {
+      const commentLi = "<tr class='cm-li'><td colspan=3>over 10 comments</td></tr>";
+      document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
+    }
+  }
+  else {
     const commentLi = "<tr class='cm-li'><td colspan=3>No comments found!</td></tr>";
     document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
   }
 
-  return null;
+  return null
+}
+
+export const commentPopup = async (itemId, movie) => {
+  const commentElem = document.querySelector('#commentPopup');
+  document.querySelector('body').style.overflow = 'hidden'; 
+
+  commentElem.style.display = 'block';
+  document.querySelector('#cm-movie-img').src = movie.image.original;
+  document.querySelector('#cm-movie-title').innerHTML = movie.name;
+  document.querySelector('#cm-movie-details').innerHTML = movie.summary;
+  document.querySelector('#cm-movie-type').innerHTML = movie.type;
+  document.querySelector('#cm-movie-runtime').innerHTML = movie.runtime;
+  document.querySelector('#cm-movie-rating').innerHTML = movie.rating.average;
+  document.querySelector('#cm-submit-comment').setAttribute('item-id', itemId);
+
+  const comments = await commentCounter(itemId);
+  if (!comments) return;
+
+  const commentLi = comments.map((item) => `
+    <tr class='cm-li'>
+      <td>${item.comment}</td> 
+      <td>${item.username}</td> 
+      <td>${item.creation_date}</td>
+    </tr>
+  `);
+
+  document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi.join(' ');
+
 };
 
-export const commentShow = () => {
+export const commentShow = (movies) => {
   const commentTarget = document.querySelector('#homepage');
   commentTarget.addEventListener('click', (e) => {
     if (e.target instanceof HTMLButtonElement) {
-      const itemId = e.target.attributes.name.nodeValue;
-
-      commentPopup(itemId, {
-        imgLink: e.target.parentElement.querySelector('.hp-ul-li-img').src,
-        itemName: e.target.parentElement.querySelector('.item-title').innerText,
-        itemSummary: e.target.parentElement.querySelector('.item-details-hidden').innerText,
-        itemType: e.target.parentElement.querySelector('.item-type-hidden').innerText,
-        itemRuntime: e.target.parentElement.querySelector('.item-runtime-hidden').innerText,
-        itemRating: e.target.parentElement.querySelector('.item-rating-hidden').innerText,
-      });
+      const itemId = parseInt(e.target.attributes.name.nodeValue, 10);
+      const movie = movies.find(e => e.id === itemId);
+      
+      commentPopup(itemId, movie);
     }
   });
 };
 
 export const commentClose = () => {
   const commentClose = document.querySelector('.cm-close-comment-popup');
+  
   const commentPopupClose = () => {
     const commentElem = document.querySelector('#commentPopup');
     commentElem.style.display = 'none';
+    document.querySelector('body').style.overflow = 'auto'; 
   };
+
   commentClose.addEventListener('click', commentPopupClose);
 };
 
-export const commentSubmit = () => {
-  const commentSubmit = document.querySelector('#cm-submit-comment');
-  commentSubmit.addEventListener('click', async (e) => {
-    e.preventDefault();
-    const comName = document.querySelector('#cm-commentor-name');
-    const comInsight = document.querySelector('#cm-commentor-insight');
 
-    const data = {
-      item_id: e.target.getAttribute('item-id'),
-      username: comName.value,
-      comment: comInsight.value,
-    };
-    const commentSubmit = await fetch(`${BASE_URL}apps/${APP}/comments`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    const commentResponse = await commentSubmit;
-    if (commentResponse.status === 201) {
-      document.querySelector('#cm-feedback-message-success').style.display = 'block';
-      comName.value = '';
-      comInsight.value = '';
-      setTimeout(() => {
-        document.querySelector('#cm-feedback-message-success').style.display = 'none';
-      }, 3000);
-    } else {
-      document.querySelector('#cm-feedback-message-fail').style.display = 'block';
-      setTimeout(() => {
-        document.querySelector('#cm-feedback-message-fail').style.display = 'none';
-      }, 3000);
-    }
-  });
-};

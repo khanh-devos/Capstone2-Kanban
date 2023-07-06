@@ -76,13 +76,6 @@ body {
   border-radius: 1em;
 }
 
-.item-details-hidden,
-.item-type-hidden,
-.item-rating-hidden,
-.item-runtime-hidden {
-  display: none;
-}
-
 #commentPopup {
   /* display: flex;
   flex-direction: column;
@@ -93,9 +86,8 @@ body {
   height: 100%;
   top: 0px;
   left: 0px;
-  background: rgba(136, 131, 99, 0.98);
+  background: rgba(136, 131, 99, 0.9);
   overflow-y: auto;
-  padding-bottom: 100px;
   display: none;
 }
 
@@ -124,9 +116,8 @@ body {
 
 .cm-movie-details {
   width: 60%;
-  margin: 100px auto 0;
   background: rgba(136, 131, 99, 1);
-  padding: 50px;
+  padding: 1em;
   box-shadow: 0px 0px 3000px 8000px rgb(0 0 0 / 30%);
 }
 
@@ -144,10 +135,6 @@ body {
 
 .cm-movie-details p {
   margin: 10px auto;
-}
-
-.cm-movie-details img {
-  width: 500px;
 }
 
 .cm-show-comment {
