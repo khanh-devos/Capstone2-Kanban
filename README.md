@@ -29,7 +29,7 @@
 
 # 📖 [Capstone2-Kaban] <a name="about-project"></a>
 
-**Capstone2-Kaban** is a website for showing all the episodes of season 1 'Under the Dome'. While building it, we leveraged a Kanban board inside a Github project to manage the workflow of each members.  I
+**Capstone2-Kaban** is a website for showing all the episodes(movies) of season 1 'Under the Dome'. While building it, we leveraged a Kanban board inside a Github project to manage the workflow of each members. Clients can like or comment on each episode. The new like and comment is auto updated.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -41,6 +41,7 @@
     <li><a href="#">JS</a></li>
     <li><a href="#">HTML</a></li>
     <li><a href="#">Git & Github</a></li>
+    <li><a href="#">Jest</a></li>
   </ul>
 </details>
 
@@ -50,7 +51,7 @@
 
 - **Fetch APIs**
 - **Display Movies**
-- **Allow client likes**
+- **Allow clients like and comment**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -124,6 +125,7 @@ You can deploy any service you want.
 👤 **Omar Faruk**
 
 - GitHub: [Omar Faruk](https://github.com/aqurds)
+- LinkedIn: [Omar Faruk](https://www.linkedin.com/in/aqurds/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
