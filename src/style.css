@@ -76,8 +76,133 @@ body {
   border-radius: 1em;
 }
 
+.item-details-hidden,
+.item-type-hidden,
+.item-rating-hidden,
+.item-runtime-hidden {
+  display: none;
+}
+
 #commentPopup {
-  border: 0.1em solid red;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: rgba(136, 131, 99, 0.98);
+  overflow-y: auto;
+  padding-bottom: 100px;
+  display: none;
+}
+
+#commentPopup form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#commentPopup form input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.cm-close-comment-popup {
+  font-weight: 900;
+  font-size: 48px;
+  color: black;
+  position: fixed;
+  top: 30px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.cm-movie-details {
+  width: 60%;
+  margin: 100px auto 0;
+  background: rgba(136, 131, 99, 1);
+  padding: 50px;
+  box-shadow: 0px 0px 3000px 8000px rgb(0 0 0 / 30%);
+}
+
+.cm-movie-details,
+.cm-show-comment,
+.cm-add-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: 100px auto 0;
+  background: rgba(136, 131, 99, 1);
+  padding: 50px;
+}
+
+.cm-movie-details p {
+  margin: 10px auto;
+}
+
+.cm-movie-details img {
+  width: 500px;
+}
+
+.cm-show-comment {
+  margin-top: 50px;
+}
+
+.cm-add-comment {
+  margin-top: 50px;
+}
+
+.cm-movie-item-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.cm-movie-item-wrapper p:first-child {
+  font-weight: 900;
+  margin: 0 50px 0 0;
+}
+
+#cm-feedback-message-success,
+#cm-feedback-message-fail {
+  font-size: 16px;
+  font-weight: bold;
+  color: orange;
+  display: none;
+}
+
+#cm-feedback-message-success {
+  color: green;
+}
+
+.cm-show-comment table {
+  width: 100%;
+}
+
+.cm-show-comment table thead {
+  font-weight: 900;
+}
+
+.cm-show-comment table tr {
+  border: 1px solid lightblue;
+}
+
+.cm-show-comment table tr td {
+  border: 1px solid lightblue;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.cm-show-comment table thead tr td {
+  padding: 10px;
 }
 
 #footer {

@@ -70,8 +70,11 @@ export const listItems = async () => {
       />
 
       <div class='hp-ul-li-div'>
-        <h3>${item.name}</h3>
-
+        <h3 class='item-title'>${item.name}</h3>
+        <span class='item-details-hidden'> ${item.summary} </span>
+        <span class='item-type-hidden'> ${item.type} </span>
+        <span class='item-rating-hidden'> ${item.rating.average} </span>
+        <span class='item-runtime-hidden'> ${item.runtime} </span>
         <span class="material-symbols-outlined heart" 
         id='${item.id}-heart'>
           favorite
@@ -80,7 +83,7 @@ export const listItems = async () => {
       
       <h5 class='hp-likes' id='${item.id}-likes'>likes</h5>
 
-      <button class='hp-comment-btn' name='${item.id}'>Comments</button>
+      <button class='hp-comment-btn' name='${item.id}' id=''${item.id}>Comments</button>
     </li>
   
   `);
