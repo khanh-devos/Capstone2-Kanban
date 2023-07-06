@@ -9,12 +9,12 @@ export const getComments = async (itemId) => {
     .then(async (res) => {
       if (res.ok) movies = await res.json();
       else movies = null;
-    })
-    
+    });
+
   return movies;
 };
 
-export const submitComment = async () => {
+export const submitComment = async (e) => {
   e.preventDefault();
   const comName = document.querySelector('#cm-commentor-name');
   const comInsight = document.querySelector('#cm-commentor-insight');
@@ -34,7 +34,7 @@ export const submitComment = async () => {
   });
 
   const commentResponse = await commentSubmit.json();
-  
+
   if (commentResponse.status === 201) {
     document.querySelector('#cm-feedback-message-success').style.display = 'block';
     comName.value = '';
@@ -42,11 +42,10 @@ export const submitComment = async () => {
     setTimeout(() => {
       document.querySelector('#cm-feedback-message-success').style.display = 'none';
     }, 3000);
-  } 
-  else {
+  } else {
     document.querySelector('#cm-feedback-message-fail').style.display = 'block';
     setTimeout(() => {
       document.querySelector('#cm-feedback-message-fail').style.display = 'none';
     }, 3000);
   }
-}
+};

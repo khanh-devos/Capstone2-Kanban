@@ -1,32 +1,26 @@
 import * as commentAPI from './commentPopupAPI.js';
 
-const BASE_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
-const APP = 'WJMi62Cw2ldmsCpFe58w';
-
 export const commentCounter = async (itemId) => {
   const comments = await commentAPI.getComments(itemId);
-  console.log(comments);
 
   if (comments) {
-    if(comments.length <= 20) {
-      return comments
+    if (comments.length <= 20) {
+      return comments;
     }
-    else {
-      const commentLi = "<tr class='cm-li'><td colspan=3>over 10 comments</td></tr>";
-      document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
-    }
-  }
-  else {
+
+    const commentLi = "<tr class='cm-li'><td colspan=3>over 10 comments</td></tr>";
+    document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
+  } else {
     const commentLi = "<tr class='cm-li'><td colspan=3>No comments found!</td></tr>";
     document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
   }
 
-  return null
-}
+  return null;
+};
 
 export const commentPopup = async (itemId, movie) => {
   const commentElem = document.querySelector('#commentPopup');
-  document.querySelector('body').style.overflow = 'hidden'; 
+  document.querySelector('body').style.overflow = 'hidden';
 
   commentElem.style.display = 'block';
   document.querySelector('#cm-movie-img').src = movie.image.original;
@@ -49,7 +43,6 @@ export const commentPopup = async (itemId, movie) => {
   `);
 
   document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi.join(' ');
-
 };
 
 export const commentShow = (movies) => {
@@ -57,8 +50,8 @@ export const commentShow = (movies) => {
   commentTarget.addEventListener('click', (e) => {
     if (e.target instanceof HTMLButtonElement) {
       const itemId = parseInt(e.target.attributes.name.nodeValue, 10);
-      const movie = movies.find(e => e.id === itemId);
-      
+      const movie = movies.find((e) => e.id === itemId);
+
       commentPopup(itemId, movie);
     }
   });
@@ -66,14 +59,12 @@ export const commentShow = (movies) => {
 
 export const commentClose = () => {
   const commentClose = document.querySelector('.cm-close-comment-popup');
-  
+
   const commentPopupClose = () => {
     const commentElem = document.querySelector('#commentPopup');
     commentElem.style.display = 'none';
-    document.querySelector('body').style.overflow = 'auto'; 
+    document.querySelector('body').style.overflow = 'auto';
   };
 
   commentClose.addEventListener('click', commentPopupClose);
 };
-
-
