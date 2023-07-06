@@ -13,11 +13,25 @@ body {
   padding: 2em 12em;
 }
 
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .header-a {
   font-size: 1.2em;
   padding: 0 0.3em;
   color: aliceblue;
   text-decoration: none;
+}
+
+#logo {
+  border-radius: 1em;
+  width: 7em;
+  height: 3em;
+  background: url(./imgs/logo.jpg) center center no-repeat;
+  background-size: 100% 100%;
 }
 
 #homepage {
@@ -67,6 +81,7 @@ body {
 .hp-likes {
   text-align: right;
   margin: 0;
+  font-size: 1em;
 }
 
 .hp-comment-btn {
@@ -89,6 +104,7 @@ body {
   background: rgba(136, 131, 99, 0.9);
   overflow-y: auto;
   display: none;
+  padding-bottom: 5em;
 }
 
 #commentPopup form {
@@ -102,6 +118,11 @@ body {
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
+}
+
+#comments-number {
+  font-size: 2em;
+  margin: 1em;
 }
 
 .cm-close-comment-popup {

@@ -1,14 +1,18 @@
-import * as commentAPI from './commentPopupAPI.js';
+import getComments from './commentPopupAPI.js';
+import { APP, LIKES_URL } from './homepageAPI.js';
+
+let COMMENTS_LENGTH = 0;
 
 export const commentCounter = async (itemId) => {
-  const comments = await commentAPI.getComments(itemId);
+  const comments = await getComments(itemId);
 
   if (comments) {
-    if (comments.length <= 20) {
+    if (comments.length <= 30) {
+      document.querySelector('#comments-number').innerHTML = `Comments (${comments.length})`;
       return comments;
     }
 
-    const commentLi = "<tr class='cm-li'><td colspan=3>over 10 comments</td></tr>";
+    const commentLi = "<tr class='cm-li'><td colspan=3>over 30 comments</td></tr>";
     document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
   } else {
     const commentLi = "<tr class='cm-li'><td colspan=3>No comments found!</td></tr>";
@@ -18,7 +22,25 @@ export const commentCounter = async (itemId) => {
   return null;
 };
 
-export const commentPopup = async (itemId, movie) => {
+export const updateComment = async (itemId) => {
+  const comments = await commentCounter(itemId);
+
+  if (comments && comments.length > COMMENTS_LENGTH) {
+    COMMENTS_LENGTH = comments.length;
+
+    const commentLi = comments.map((item) => `
+    <tr class='cm-li'>
+    <td>${item.comment}</td> 
+    <td>${item.username}</td> 
+    <td>${item.creation_date}</td>
+    </tr>
+    `);
+
+    document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi.join(' ');
+  }
+};
+
+export const commentPopup = (itemId, movie) => {
   const commentElem = document.querySelector('#commentPopup');
   document.querySelector('body').style.overflow = 'hidden';
 
@@ -31,18 +53,7 @@ export const commentPopup = async (itemId, movie) => {
   document.querySelector('#cm-movie-rating').innerHTML = movie.rating.average;
   document.querySelector('#cm-submit-comment').setAttribute('item-id', itemId);
 
-  const comments = await commentCounter(itemId);
-  if (!comments) return;
-
-  const commentLi = comments.map((item) => `
-    <tr class='cm-li'>
-      <td>${item.comment}</td> 
-      <td>${item.username}</td> 
-      <td>${item.creation_date}</td>
-    </tr>
-  `);
-
-  document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi.join(' ');
+  updateComment(itemId);
 };
 
 export const commentShow = (movies) => {
@@ -64,7 +75,51 @@ export const commentClose = () => {
     const commentElem = document.querySelector('#commentPopup');
     commentElem.style.display = 'none';
     document.querySelector('body').style.overflow = 'auto';
+
+    document.querySelector('#cm-movie-existing-comment').innerHTML = '';
+    COMMENTS_LENGTH = 0;
+    document.querySelector('#comments-number').innerHTML = '';
   };
 
   commentClose.addEventListener('click', commentPopupClose);
+};
+
+export const submitComment = async (e) => {
+  e.preventDefault();
+  const comName = document.querySelector('#cm-commentor-name');
+  const comInsight = document.querySelector('#cm-commentor-insight');
+
+  if (comName.value === '' || comInsight.value === '') return;
+
+  const data = {
+    item_id: e.target.getAttribute('item-id'),
+    username: comName.value,
+    comment: comInsight.value,
+  };
+
+  const commentSubmit = await fetch(`${LIKES_URL}apps/${APP}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (commentSubmit.ok) {
+    updateComment(data.item_id);
+
+    document.querySelector('#cm-feedback-message-success').style.display = 'block';
+    comName.value = '';
+    comInsight.value = '';
+
+    setTimeout(() => {
+      document.querySelector('#cm-feedback-message-success').style.display = 'none';
+    }, 3000);
+  } else {
+    document.querySelector('#cm-feedback-message-fail').style.display = 'block';
+
+    setTimeout(() => {
+      document.querySelector('#cm-feedback-message-fail').style.display = 'none';
+    }, 3000);
+  }
 };
