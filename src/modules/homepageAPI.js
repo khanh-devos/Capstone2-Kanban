@@ -21,7 +21,7 @@ export const getLikes = async () => {
 
   await fetch(`${LIKES_URL}apps/${APP}/likes`)
     .then(async (res) => {
-      allLikes = await res.json();
+      if (res.ok && res.status === 200) allLikes = await res.json();
     });
 
   return allLikes;

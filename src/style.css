@@ -8,8 +8,8 @@
 }
 
 body {
-  background: url(./imgs/undertheDome.jpg) center center no-repeat;
-  background-size: 100% 100%;
+  background: url(./imgs/undertheDome.jpg) center center repeat-y;
+  background-size: 100% auto;
   padding: 2em 12em;
 }
 
