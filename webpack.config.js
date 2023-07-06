@@ -41,6 +41,6 @@ module.exports = {
     static: {
       directory: path.resolve(__dirname, 'docs'),
     },
-    port: 3001,
+    port: 3000,
   },
 };
