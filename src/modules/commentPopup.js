@@ -1,43 +1,24 @@
 import getComments from './commentPopupAPI.js';
 import { APP, LIKES_URL } from './homepageAPI.js';
 
-let COMMENTS_LENGTH = 0;
-
-export const commentCounter = async (itemId) => {
-  const comments = await getComments(itemId);
-
-  if (comments) {
-    if (comments.length <= 30) {
-      document.querySelector('#comments-number').innerHTML = `Comments (${comments.length})`;
-      return comments;
-    }
-
-    const commentLi = "<tr class='cm-li'><td colspan=3>over 30 comments</td></tr>";
-    document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
-  } else {
-    const commentLi = "<tr class='cm-li'><td colspan=3>No comments found!</td></tr>";
-    document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi;
-  }
-
-  return null;
-};
+export const commentCounter = (element) => element.children.length;
 
 export const updateComment = async (itemId) => {
-  const comments = await commentCounter(itemId);
+  const comments = await getComments(itemId);
+  if (!comments) return;
 
-  if (comments && comments.length > COMMENTS_LENGTH) {
-    COMMENTS_LENGTH = comments.length;
-
-    const commentLi = comments.map((item) => `
+  const commentLi = comments.map((item) => `
     <tr class='cm-li'>
     <td>${item.comment}</td> 
     <td>${item.username}</td> 
     <td>${item.creation_date}</td>
     </tr>
-    `);
+  `);
 
-    document.querySelector('#cm-movie-existing-comment').innerHTML = commentLi.join(' ');
-  }
+  const commentBox = document.querySelector('#cm-movie-existing-comment');
+  commentBox.innerHTML = commentLi.join(' ');
+
+  document.querySelector('#comments-number').innerHTML = `Comment(${commentCounter(commentBox)})`;
 };
 
 export const commentPopup = (itemId, movie) => {
@@ -77,7 +58,6 @@ export const commentClose = () => {
     document.querySelector('body').style.overflow = 'auto';
 
     document.querySelector('#cm-movie-existing-comment').innerHTML = '';
-    COMMENTS_LENGTH = 0;
     document.querySelector('#comments-number').innerHTML = '';
   };
 
@@ -89,7 +69,14 @@ export const submitComment = async (e) => {
   const comName = document.querySelector('#cm-commentor-name');
   const comInsight = document.querySelector('#cm-commentor-insight');
 
-  if (comName.value === '' || comInsight.value === '') return;
+  if (comName.value === '' || comInsight.value === '') {
+    document.querySelector('#cm-feedback-message-fail').style.display = 'block';
+
+    setTimeout(() => {
+      document.querySelector('#cm-feedback-message-fail').style.display = 'none';
+    }, 3000);
+    return;
+  }
 
   const data = {
     item_id: e.target.getAttribute('item-id'),

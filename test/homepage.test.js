@@ -2,33 +2,33 @@
  * @jest-environment jsdom
  */
 
-import moviesCounter from './homepageFunc.js';
+import { moviesCounter } from '../src/modules/hompage.js';
 
-describe('test Counter Movies all edge cases', () => {
-  test('normal with 20 movies', () => {
-    document.body.innerHTML = '<div id="episode-counter"></div>';
+describe('test movies on the DOM', () => {
+  test('return 0 when there are no item', () => {
+    const movies = new Array(0).fill('<li></li>');
+    document.body.innerHTML = '<ul id="homepage-ul"></ul>';
+    const ul = document.querySelector('#homepage-ul');
+    ul.innerHTML = movies.join(' ');
 
-    const checkDom = jest.fn(() => document.querySelector('#episode-counter').textContent);
-
-    expect(moviesCounter(20)).toStrictEqual(new Array(20).fill(1));
-    expect(checkDom()).toBe('Episode(20)');
+    expect(moviesCounter(ul)).toStrictEqual(0);
   });
 
-  test('over 100 movies', () => {
-    document.body.innerHTML = '<div id="homepage-ul"></div>';
+  test('return 1 when there are 1 item', () => {
+    const movies = new Array(1).fill('<li></li>');
+    document.body.innerHTML = '<ul id="homepage-ul"></ul>';
+    const ul = document.querySelector('#homepage-ul');
+    ul.innerHTML = movies.join(' ');
 
-    const checkDom = jest.fn(() => document.querySelector('#homepage-ul').textContent);
-
-    expect(moviesCounter(110)).toStrictEqual(null);
-    expect(checkDom()).toBe('Too many movies !!');
+    expect(moviesCounter(ul)).toStrictEqual(1);
   });
 
-  test('there is no movies', () => {
-    document.body.innerHTML = '<div id="homepage-ul"></div>';
+  test('return 20 when there are 20 items', () => {
+    const movies = new Array(20).fill('<li></li>');
+    document.body.innerHTML = '<ul id="homepage-ul"></ul>';
+    const ul = document.querySelector('#homepage-ul');
+    ul.innerHTML = movies.join(' ');
 
-    const checkDom = jest.fn(() => document.querySelector('#homepage-ul').textContent);
-
-    expect(moviesCounter(0)).toStrictEqual(null);
-    expect(checkDom()).toBe('fetching failed !');
+    expect(moviesCounter(ul)).toStrictEqual(20);
   });
 });

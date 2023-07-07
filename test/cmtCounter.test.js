@@ -2,33 +2,33 @@
  * @jest-environment jsdom
  */
 
-import commentCounter from './cmtCounterFunc.js';
+import { commentCounter } from '../src/modules/commentPopup.js';
 
 describe('test Counter Comments all edge cases', () => {
-  test('normal with 20 comments', () => {
-    document.body.innerHTML = '<div id="comments-number"></div>';
+  test('return 0 when there is no comments', () => {
+    const comments = new Array(0).fill('<li></li>');
+    document.body.innerHTML = '<ul id="homepage-ul"></ul>';
+    const ul = document.querySelector('#homepage-ul');
+    ul.innerHTML = comments.join(' ');
 
-    const checkDom = jest.fn(() => document.querySelector('#comments-number').textContent);
-
-    expect(commentCounter(20)).toStrictEqual(new Array(20).fill(1));
-    expect(checkDom()).toBe('Comments (20)');
+    expect(commentCounter(ul)).toStrictEqual(0);
   });
 
-  test('over 30 comments', () => {
-    document.body.innerHTML = '<div id="cm-movie-existing-comment"></div>';
+  test('return 1 when there is 1 comment', () => {
+    const comments = new Array(1).fill('<li></li>');
+    document.body.innerHTML = '<ul id="homepage-ul"></ul>';
+    const ul = document.querySelector('#homepage-ul');
+    ul.innerHTML = comments.join(' ');
 
-    const checkDom = jest.fn(() => document.querySelector('#cm-movie-existing-comment').textContent);
-
-    expect(commentCounter(50)).toStrictEqual(null);
-    expect(checkDom()).toBe('over 30 comments');
+    expect(commentCounter(ul)).toStrictEqual(1);
   });
 
-  test('there is no comment', () => {
-    document.body.innerHTML = '<div id="cm-movie-existing-comment"></div>';
+  test('return 20 when there is no comments', () => {
+    const comments = new Array(20).fill('<li></li>');
+    document.body.innerHTML = '<ul id="homepage-ul"></ul>';
+    const ul = document.querySelector('#homepage-ul');
+    ul.innerHTML = comments.join(' ');
 
-    const checkDom = jest.fn(() => document.querySelector('#cm-movie-existing-comment').textContent);
-
-    expect(commentCounter(0)).toStrictEqual(null);
-    expect(checkDom()).toBe('No comments found!');
+    expect(commentCounter(ul)).toStrictEqual(20);
   });
 });

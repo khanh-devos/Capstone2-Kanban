@@ -7,10 +7,10 @@ export const getMovies = async () => {
 
   await fetch(URL)
     .then(async (res) => {
-      movies = await res.json();
+      if (res.ok && res.status === 200) movies = await res.json();
     })
     .catch(() => {
-      movies = null;
+      movies = [];
     });
 
   return movies;

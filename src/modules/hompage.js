@@ -42,26 +42,12 @@ export const melike = (event) => {
   addLike(updateLike);
 };
 
-export const moviesCounter = async () => {
-  const movies = await homeAPI.getMovies();
-
-  if (movies) {
-    if (movies.length <= 100) {
-      document.querySelector('#episode-counter').innerHTML = `Episode(${movies.length})`;
-      return movies;
-    }
-
-    document.querySelector('#homepage-ul').innerHTML = 'Too many movies !!';
-  } else {
-    document.querySelector('#homepage-ul').innerHTML = 'fetching failed !';
-  }
-
-  return null;
-};
+export const moviesCounter = (element) => element.childElementCount;
 
 export const listItems = async () => {
-  const movies = await moviesCounter();
+  const movies = await homeAPI.getMovies();
   const homepageUl = document.querySelector('#homepage-ul');
+
   if (!movies) return;
 
   const listLi = movies.map((item) => `
@@ -84,14 +70,16 @@ export const listItems = async () => {
     </li>
   
   `);
-
   homepageUl.innerHTML = listLi.join(' ');
 
   const spans = document.querySelectorAll('.heart');
-
   Object.values(spans).forEach((item) => {
     item.addEventListener('click', melike);
   });
 
+  // check movies in the DOM.
+  document.querySelector('#episode-counter').innerHTML = `Episode(${moviesCounter(homepageUl)})`;
+
+  // activate the comment page.
   comment.commentShow(movies);
 };
