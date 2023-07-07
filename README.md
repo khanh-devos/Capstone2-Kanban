@@ -12,7 +12,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
+  - [🚀 Live Demo & Video](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -50,7 +50,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **Fetch APIs**
-- **Display Movies**
+- **Display Movies, Comments Popup**
 - **Allow clients like and comment**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -58,6 +58,8 @@
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Video introduction](https://drive.google.com/file/d/1xbTibjSxqzMx3r806gBVi9v2pjHfSqZq/view?usp=drive_link)
 
 - [Live Demo Link](https://khanh-devos.github.io/Capstone2-Kanban/)
 
@@ -105,6 +107,7 @@ To run tests, run the following command:
 - npx stylelint "\*_/_.{css,scss}"
 - npx hint .
 - npx eslint .
+- npx test
 
 ### Deployment
 
