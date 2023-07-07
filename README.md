@@ -29,7 +29,7 @@
 
 # 📖 [Capstone2-Kaban] <a name="about-project"></a>
 
-**Capstone2-Kaban** is a website for showing all the episodes(movies) of season 1 of 'Under the Dome'. While building it, we leveraged a Kanban board inside the GitHub project to manage the project workload as well as the workflow of each member. Therefore, it makes sure the project will complete by the deadline. Clients can like or comment on each episode. The new like or comment is auto-updated. In addition, we had to make an explicit daily updation at 3pm to report the progress of each coder.
+**Capstone2-Kaban** is a website for showing all the episodes(movies) of season 1 of 'Under the Dome'. Clients can like or comment on each episode. The new like or comment is auto-updated. While building it, we leveraged a Kanban board inside the GitHub project to manage the project workload as well as the workflow of each member. Therefore, it makes sure the project will complete by the deadline. In addition, we had to make an explicit daily updation at 3pm to report the progress of each coder.
 
 
 
