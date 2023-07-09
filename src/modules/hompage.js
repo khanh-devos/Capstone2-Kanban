@@ -79,7 +79,7 @@ export const listItems = async () => {
 
   // show likes
   await showLikes();
-  
+
   // check movies in the DOM.
   document.querySelector('#episode-counter').innerHTML = `Episode(${moviesCounter(homepageUl)})`;
 
