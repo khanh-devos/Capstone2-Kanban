@@ -53,6 +53,10 @@ body {
   outline: auto #f1c27b;
 }
 
+.hp-ul-li:hover {
+  background: rgba(136, 131, 99, 0.9);
+}
+
 .hp-ul-li-div {
   display: flex;
   flex-direction: row;
