@@ -77,6 +77,9 @@ export const listItems = async () => {
     item.addEventListener('click', melike);
   });
 
+  // show likes
+  await showLikes();
+
   // check movies in the DOM.
   document.querySelector('#episode-counter').innerHTML = `Episode(${moviesCounter(homepageUl)})`;
 
