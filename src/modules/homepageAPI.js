@@ -24,9 +24,8 @@ export const getLikes = async () => {
       if (res.ok && res.status === 200) allLikes = await res.json();
     })
     .catch(() => {
-      console.log('here again');
       allLikes = [];
-    })
+    });
 
   return allLikes;
 };
