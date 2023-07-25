@@ -45,6 +45,8 @@
     "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@reduxjs/toolkit": "^1.9.5",
+    "lodash": "^4.17.21",
+    "react-redux": "^8.1.1"
   }
 }

@@ -1,7 +1,10 @@
 import './style.css';
 import * as home from './modules/hompage.js';
 import * as comment from './modules/commentPopup.js';
+import createStore from './store';
 
+
+const store = createStore();
 home.listItems();
 
 comment.commentClose();
