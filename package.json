@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "react-redux": "^8.1.1"
   }

@@ -16,15 +16,15 @@ export const showLikes = async () => {
 };
 
 export const addLike = async (updateLike) => {
-  fetch(`${homeAPI.LIKES_URL}apps/${homeAPI.APP}/likes`, {
+  await fetch(`${homeAPI.LIKES_URL}apps/${homeAPI.APP}/likes`, {
     method: 'POST',
     body: JSON.stringify(updateLike),
     headers: {
       'content-type': 'application/json; charset=utf-8',
     },
   })
-    .then(async () => {
-      await showLikes();
+    .then(() => {
+      showLikes();
     });
 };
 
