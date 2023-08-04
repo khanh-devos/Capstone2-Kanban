@@ -17,7 +17,7 @@
     "import/extensions": [
       1,
       {
-        "js": "always",
+        "js": "none",
         "json": "always"
       }
     ],
