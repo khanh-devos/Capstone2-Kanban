@@ -1,7 +1,10 @@
 import { reduxAddLike, reduxGetLikes } from './likes/likeSlice';
 import { showLikes } from '../modules/hompage';
+import createGlobalStore from './store';
 
-export const showReduxLikes = (store) => {
+export const store = createGlobalStore();
+
+export const showReduxLikes = () => {
   const { likes: ALL_LIKES } = store.getState().like;
   const hearts = document.querySelectorAll('.redux-likes');
 
@@ -13,7 +16,7 @@ export const showReduxLikes = (store) => {
   });
 };
 
-export const reduxMelike = async (event, store) => {
+export const reduxMelike = async (event) => {
   const id = event.target.id.split('-')[0];
   const { likes: ALL_LIKES } = store.getState().like;
   const isExisting = ALL_LIKES.find((e) => e.item_id === id);
@@ -25,11 +28,11 @@ export const reduxMelike = async (event, store) => {
   if (isExisting) updateLike.likes = isExisting.likes + 1;
 
   await store.dispatch(reduxAddLike(updateLike));
-  store.dispatch(reduxGetLikes());
-  showReduxLikes(store);
+  await store.dispatch(reduxGetLikes());
+  showReduxLikes();
 };
 
-export const showListEpisodes = (store) => store.subscribe(() => {
+export const showListEpisodes = () => store.subscribe(() => {
   const { movies } = store.getState().movie;
   if (!movies) return;
 
@@ -57,16 +60,16 @@ export const showListEpisodes = (store) => store.subscribe(() => {
   reduxHomeUl.innerHTML = listLi.join(' ');
 
   // showReduxLikes
-  showReduxLikes(store);
+  showReduxLikes();
 
   // add new like:
   const h5 = document.querySelectorAll('.redux-heart');
   Object.values(h5).forEach((item) => {
-    item.addEventListener('click', (event) => reduxMelike(event, store));
+    item.addEventListener('click', reduxMelike);
   });
 });
 
-export const changePage = (event, store) => {
+export const changePage = (event) => {
   event.preventDefault();
   const { id } = event.currentTarget;
 
